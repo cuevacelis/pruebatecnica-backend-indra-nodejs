@@ -1,0 +1,58 @@
+org: cuevacelis
+app: aws-node-express-dynamodb-api-project
+service: aws-node-express-dynamodb-api-project
+frameworkVersion: "3"
+
+custom:
+  tableName: "users-table-${sls:stage}"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - Fn::GetAtt: [UsersTable, Arn]
+  environment:
+    USERS_TABLE: ${self:custom.tableName}
+
+functions:
+  getPeople:
+    name: "getPeople"
+    description: Obtener datos de los actores de star wars
+    handler: src/controllers/PeopleController.getPeople
+    events:
+      - httpApi:
+          path: /api/getPeople
+          method: get
+  createPeople:
+    name: "createPeople"
+    description: Crear nuevos actores de star wars
+    handler: src/controllers/PeopleController.createPeople
+    events:
+      - httpApi:
+          path: /api/createPeople
+          method: post
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.tableName}
