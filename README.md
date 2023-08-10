@@ -45,4 +45,25 @@ https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people/{id}
 ```
 POST: Se agrega nuevas personas a la pelicula de Star Was en DynamoDB.
 https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people
+
+Body Example:
+{
+    "peopleId":"1",
+    "nombre":"Skywalker",
+    "altura": "167",
+    "masa": "75",
+    "color_de_pelo": "n/a",
+    "color_de_piel": "gold",
+    "color_de_ojos": "yellow",
+    "año_de_nacimiento": "112BBY",
+    "genero": "n/a",
+    "mundo_natal": "https://swapi.dev/api/planets/1/",
+    "peliculas": [],
+    "especies": [],
+    "vehiculos": [],
+    "naves_estelares": [],
+    "creado": "2014-12-10T15:10:51.357000Z",
+    "editado": "2014-12-20T21:17:50.309000Z",
+    "vinculo": "https://swapi.dev/api/people/2/"
+}
 ```
