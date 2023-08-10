@@ -1,14 +1,14 @@
 const PEOPLE_SERVICE = require("../services/peopleService");
 
 module.exports = {
-  async getPeople(event) {
-    if (event.pathParameters?.id) {
-      return PEOPLE_SERVICE.getByIdPeopleService(event);
+  async getPeople(eventLambda) {
+    if (eventLambda.pathParameters?.id) {
+      return PEOPLE_SERVICE.getByIdPeopleService(eventLambda);
     } else {
-      return PEOPLE_SERVICE.getAllPeoplesService(event);
+      return PEOPLE_SERVICE.getAllPeoplesService(eventLambda);
     }
   },
-  async createPeople(event) {
-    return PEOPLE_SERVICE.createPeopleService(event);
+  async createPeople(eventLambda) {
+    return PEOPLE_SERVICE.createPeopleService(eventLambda);
   },
 };
