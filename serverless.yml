@@ -11,6 +11,7 @@ custom:
       - test
 
 provider:
+  timeout: 50
   name: aws
   runtime: nodejs18.x
   iam:

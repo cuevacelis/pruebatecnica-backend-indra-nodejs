@@ -1,24 +1,25 @@
 const { PeopleModal } = require("../models/peopleModals");
+const { PeopleSwapiModal } = require("../models/peopleSwapiModals");
+const swapi = require("swapi-node");
 
 async function getAllPeoplesService(eventLambda) {
   try {
     const { Items } = await PeopleModal.getAll({});
+    const RESPONSE_PEOPLE_SWAPI_ALL = await PeopleSwapiModal.getAll({});
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message:
-          "Go Serverless v3.0! Your function executed successfully! sin id",
-        input: eventLambda,
-        Items,
+        message: "¡Datos de SW obtenidos con exito!",
+        DynamoDB: Items,
+        Swapi: RESPONSE_PEOPLE_SWAPI_ALL,
       }),
     };
   } catch (error) {
     console.log(error);
     return {
-      statusCode: 500,
+      statusCode: error.statusCode ?? 500,
       body: JSON.stringify({
-        message: "bad",
-        input: eventLambda,
+        message: "¡Error: Al obtener los datos de SW!",
       }),
     };
   }
@@ -29,35 +30,33 @@ async function getByIdPeopleService(eventLambda) {
     const { Item } = await PeopleModal.getById({
       peopleId: eventLambda.pathParameters.id,
     });
+    const RESPONSE_PEOPLE = await PeopleSwapiModal.getById({
+      peopleId: eventLambda.pathParameters.id,
+    });
 
-    if (Item) {
-      const { peopleId, name } = Item;
+    if (Item || RESPONSE_PEOPLE) {
       return {
         statusCode: 200,
         body: JSON.stringify({
-          message:
-            "Go Serverless v3.0! Your function executed successfully ID!",
-          peopleId,
-          name,
-          input: eventLambda,
+          message: "¡Persona de SW obtenida con exito!",
+          DynamoDB: Item ?? "No se encontro resultados",
+          Swapi: RESPONSE_PEOPLE ?? "No se encontro resultados",
         }),
       };
     } else {
       return {
         statusCode: 404,
         body: JSON.stringify({
-          message: 'Could not find user with provided "peopleId"',
-          input: eventLambda,
+          message: 'Falta el campo de "peopleId":"1" como string',
         }),
       };
     }
   } catch (error) {
     console.log(error);
     return {
-      statusCode: 500,
+      statusCode: error.statusCode ?? 500,
       body: JSON.stringify({
-        message: "bad",
-        input: eventLambda,
+        message: "¡Error: Al buscar una persona de SW!",
       }),
     };
   }
@@ -67,12 +66,11 @@ async function createPeopleService(eventLambda) {
   try {
     const BODY = JSON.parse(eventLambda.body);
     const { peopleId, name } = BODY;
-    //agregar el modelo que verifica los atributos
     if (typeof peopleId !== "string") {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          message: "must be a string",
+          message: 'Falta el campo de "peopleId":"1" como string',
           input: eventLambda,
         }),
       };
@@ -85,21 +83,16 @@ async function createPeopleService(eventLambda) {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: "creado con exito",
+        message: "¡Persona de Star Wars agregada con exito :)!",
         peopleId: peopleId,
-        name: name,
-        input: eventLambda,
       }),
     };
   } catch (error) {
     console.log(error);
     return {
-      statusCode: 500,
+      statusCode: error.statusCode ?? 500,
       body: JSON.stringify({
-        message: "Could not create people",
-        IS_OFFLINE: process.env.IS_OFFLINE,
-        PEOPLE_TABLE: process.env.PEOPLE_TABLE,
-        input: eventLambda,
+        message: "¡Error: Al agregar nueva persona de SW!",
       }),
     };
   }
