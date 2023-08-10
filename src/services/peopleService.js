@@ -65,13 +65,20 @@ async function getByIdPeopleService(eventLambda) {
 async function createPeopleService(eventLambda) {
   try {
     const BODY = JSON.parse(eventLambda.body);
-    const { peopleId, name } = BODY;
-    if (typeof peopleId !== "string") {
+    if (typeof BODY.peopleId !== "string" || BODY.peopleId.length === 0) {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          message: 'Falta el campo de "peopleId":"1" como string',
-          input: eventLambda,
+          message: 'Error: "peopleId" de tipo string, faltante o vacio',
+        }),
+      };
+    }
+
+    if (typeof BODY.nombre !== "string" || BODY.nombre.length === 0) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          message: 'Error: "nombre" de tipo string, faltante o vacio',
         }),
       };
     }
@@ -84,7 +91,7 @@ async function createPeopleService(eventLambda) {
       statusCode: 200,
       body: JSON.stringify({
         message: "¡Persona de Star Wars agregada con exito :)!",
-        peopleId: peopleId,
+        peopleId: BODY.peopleId,
       }),
     };
   } catch (error) {
