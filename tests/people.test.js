@@ -14,7 +14,7 @@ const config = {
 
 const ddb = new DocumentClient(config);
 
-describe("Test Controller People", () => {
+describe("Test People", () => {
   it("should insert item into table People", async () => {
     await ddb
       .put({

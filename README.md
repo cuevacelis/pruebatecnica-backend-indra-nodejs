@@ -67,3 +67,17 @@ Body Example:
     "vinculo": "https://swapi.dev/api/people/2/"
 }
 ```
+
+## Realizado
+
+- 3 endpoints
+- Integración la base de datos DynamoDB
+- Integración con SWAPI
+- Uso de Serverless Framework
+- Uso de Node.js
+- Respeto de las buenas prácticas de desarrollo
+- Traducción de campos de inglés a español en SWAPI
+- Documentación de uso
+- Pruebas unitarias
+- Desplegar sin errores en AWS con el comando deploy del framework serverless
+- Mayor complejidad de Integración
