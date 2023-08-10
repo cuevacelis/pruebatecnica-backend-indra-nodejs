@@ -33,17 +33,17 @@ A continuación se presentaran los endpoints del proyecto para su uso.
 ### People
 
 ```
-GET: Se obtienen todos las personas de la pelicula Star Wars, de DynamoDB como de la API SWAPI.
+GET: Se obtienen todas las personas de la pelicula Star Wars, en DynamoDB y la API SWAPI.
 https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people
 ```
 
 ```
-GET: Se buscan los datos de una persona por ID de la pelicula de Star Was, de DynamoDB como de la API SWAPI.
+GET: Se buscan los datos de una persona por ID de las pelicula s de Star Wars, en DynamoDB y la API SWAPI.
 https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people/{id}
 ```
 
 ```
-POST: Se agrega nuevas personas a la pelicula de Star Was en DynamoDB.
+POST: Se agrega nuevas personas al mundo de Star Wars en DynamoDB.
 https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people
 
 Body Example:
