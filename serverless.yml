@@ -34,7 +34,7 @@ functions:
   getPeople:
     name: "getPeople"
     description: Get data on star wars actors
-    handler: src/controllers/PeopleController.getPeople
+    handler: src/controllers/peopleController.getPeople
     events:
       - httpApi:
           path: /api/people
@@ -45,7 +45,7 @@ functions:
   createPeople:
     name: "createPeople"
     description: Create new star wars actors
-    handler: src/controllers/PeopleController.createPeople
+    handler: src/controllers/peopleController.createPeople
     events:
       - httpApi:
           path: /api/people
