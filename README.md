@@ -78,9 +78,33 @@ Body Payload Example:
 }
 ```
 
+```
+PATCH: Se actualizan todos o algunos de los atributos de las personas del mundo de Star Wars en DynamoDB.
+https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people/{id}
+
+Body Payload Example:
+{
+    "nombre":"Nuevo Skywalker",
+}
+
+{
+    "nombre":"Nuevo Skywalker",
+    "altura": "172",
+}
+
+{
+    "vinculo": "https://google.com"
+}
+```
+
+```
+DELETE: Se eliminan a las personas por Id del mundo de Star Wars en DynamoDB.
+https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people/{id}
+```
+
 ## Realizado
 
-- 3 endpoints
+- 5 endpoints
 - Integración con la base de datos DynamoDB
 - Integración con SWAPI
 - Uso de Serverless Framework

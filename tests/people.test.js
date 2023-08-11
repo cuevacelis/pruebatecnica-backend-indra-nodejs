@@ -193,4 +193,105 @@ describe("Test People", () => {
     expect(result).toHaveProperty("statusCode");
     expect(result).toHaveProperty("body");
   });
+
+  it("Event updatePeople", async () => {
+    expect.assertions(2);
+    const EVENT = {
+      body:
+        "{\r\n" +
+        '    "nombre":"Skywalker",\r\n' +
+        '    "altura": "167",\r\n' +
+        '    "vinculo": "https://swapi.dev/api/people/2/"\r\n' +
+        "}",
+      cookies: [],
+      headers: {
+        "content-type": "application/json",
+        "user-agent": "PostmanRuntime/7.32.3",
+        accept: "*/*",
+        "postman-token": "78cbc1f3-6001-48b9-ae8e-1695cba3f136",
+        host: "localhost:3000",
+        "accept-encoding": "gzip, deflate, br",
+        connection: "keep-alive",
+        "content-length": "535",
+      },
+      isBase64Encoded: false,
+      pathParameters: null,
+      queryStringParameters: null,
+      rawPath: "/api/people",
+      rawQueryString: "",
+      requestContext: {
+        accountId: "offlineContext_accountId",
+        apiId: "offlineContext_apiId",
+        authorizer: { jwt: [Object] },
+        domainName: "offlineContext_domainName",
+        domainPrefix: "offlineContext_domainPrefix",
+        http: {
+          method: "POST",
+          path: "/api/people",
+          protocol: "HTTP/1.1",
+          sourceIp: "::1",
+          userAgent: "PostmanRuntime/7.32.3",
+        },
+        operationName: undefined,
+        requestId: "offlineContext_resourceId",
+        routeKey: "POST /api/people",
+        stage: "$default",
+        time: "10/Aug/2023:16:53:46 -0500",
+        timeEpoch: 1691704426334,
+      },
+      routeKey: "POST /api/people",
+      stageVariables: null,
+      version: "2.0",
+    };
+    const result = await createPeople(EVENT);
+    expect(result).toHaveProperty("statusCode");
+    expect(result).toHaveProperty("body");
+  });
+
+  it("Event deletePeople", async () => {
+    expect.assertions(2);
+    const EVENT = {
+      body: null,
+      cookies: [],
+      headers: {
+        "user-agent": "PostmanRuntime/7.32.3",
+        accept: "*/*",
+        "postman-token": "f272f5c7-2554-4dd6-8069-6829f86e4fc9",
+        host: "localhost:3000",
+        "accept-encoding": "gzip, deflate, br",
+        connection: "keep-alive",
+      },
+      isBase64Encoded: false,
+      pathParameters: { id: "1" },
+      queryStringParameters: null,
+      rawPath: "/api/people/1",
+      rawQueryString: "",
+      requestContext: {
+        accountId: "offlineContext_accountId",
+        apiId: "offlineContext_apiId",
+        authorizer: { jwt: [Object] },
+        domainName: "offlineContext_domainName",
+        domainPrefix: "offlineContext_domainPrefix",
+        http: {
+          method: "GET",
+          path: "/api/people/1",
+          protocol: "HTTP/1.1",
+          sourceIp: "::1",
+          userAgent: "PostmanRuntime/7.32.3",
+        },
+        operationName: undefined,
+        requestId: "offlineContext_resourceId",
+        routeKey: "GET /api/people/{id}",
+        stage: "$default",
+        time: "10/Aug/2023:16:49:44 -0500",
+        timeEpoch: 1691704184541,
+      },
+      routeKey: "GET /api/people/{id}",
+      stageVariables: null,
+      version: "2.0",
+    };
+    const result = await createPeople(EVENT);
+    expect(result).toHaveProperty("statusCode");
+    expect(result).toHaveProperty("body");
+  });
 });
