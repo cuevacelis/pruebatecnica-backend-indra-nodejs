@@ -9,11 +9,10 @@ class PeopleSwapiModal {
     this.color_de_pelo = entity.hair_color;
     this.color_de_piel = entity.skin_color;
     this.color_de_ojos = entity.eye_color;
-    this.año_de_nacimiento = entity.birth_year;
+    this.anio_de_nacimiento = entity.birth_year;
     this.genero = entity.gender;
     this.mundo_natal = entity.homeworld;
     this.peliculas = entity.films;
-    this.especies = entity.pecies;
     this.vehiculos = entity.vehicles;
     this.naves_estelares = entity.starships;
     this.creado = entity.created;

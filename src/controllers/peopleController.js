@@ -11,4 +11,10 @@ module.exports = {
   async createPeople(eventLambda) {
     return PEOPLE_SERVICE.createPeopleService(eventLambda);
   },
+  async updatePeople(eventLambda) {
+    return PEOPLE_SERVICE.updatePeopleService(eventLambda);
+  },
+  async deletePeople(eventLambda) {
+    return PEOPLE_SERVICE.deletePeopleService(eventLambda);
+  },
 };

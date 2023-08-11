@@ -18,7 +18,7 @@ EL presente repositorio consta de la prueba tecnica para backend de Indra.
 ## Scripts de funcionamiento
 
 ```
-- Se necesita tener instalado "serverless"
+- npm install -g serverless
 - npm i
 - serverless offline
 - serverless dynamodb start
@@ -26,7 +26,7 @@ EL presente repositorio consta de la prueba tecnica para backend de Indra.
 - serverless deploy
 ```
 
-## EndPoints
+## Documentación de EndPoints
 
 A continuación se presentaran los endpoints del proyecto para su uso.
 
@@ -38,7 +38,7 @@ https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people
 ```
 
 ```
-GET: Se buscan los datos de una persona por ID de las pelicula s de Star Wars, en DynamoDB y la API SWAPI.
+GET: Se buscan los datos de una persona por ID de las peliculas de Star Wars, en DynamoDB y la API SWAPI.
 https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people/{id}
 ```
 
@@ -46,32 +46,42 @@ https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people/{id}
 POST: Se agrega nuevas personas al mundo de Star Wars en DynamoDB.
 https://24pvqepr5h.execute-api.us-east-1.amazonaws.com/api/people
 
-Body Example:
+Body Payload Example:
 {
     "peopleId":"1",
     "nombre":"Skywalker",
-    "altura": "167",
-    "masa": "75",
-    "color_de_pelo": "n/a",
-    "color_de_piel": "gold",
-    "color_de_ojos": "yellow",
-    "año_de_nacimiento": "112BBY",
-    "genero": "n/a",
+    "altura": "172",
+    "masa": "77",
+    "color_de_pelo": "blond",
+    "color_de_piel": "fair",
+    "color_de_ojos": "blue",
+    "anio_de_nacimiento": "19BBY",
+    "genero": "male",
     "mundo_natal": "https://swapi.dev/api/planets/1/",
-    "peliculas": [],
-    "especies": [],
-    "vehiculos": [],
-    "naves_estelares": [],
-    "creado": "2014-12-10T15:10:51.357000Z",
-    "editado": "2014-12-20T21:17:50.309000Z",
-    "vinculo": "https://swapi.dev/api/people/2/"
+    "peliculas": [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/6/"
+    ],
+    "vehiculos": [
+        "https://swapi.dev/api/vehicles/14/",
+        "https://swapi.dev/api/vehicles/30/"
+    ],
+    "naves_estelares": [
+        "https://swapi.dev/api/starships/12/",
+        "https://swapi.dev/api/starships/22/"
+    ],
+    "creado": "2014-12-09T13:50:51.644000Z",
+    "editado": "2014-12-20T21:17:56.891000Z",
+    "vinculo": "https://swapi.dev/api/people/1/"
 }
 ```
 
 ## Realizado
 
 - 3 endpoints
-- Integración la base de datos DynamoDB
+- Integración con la base de datos DynamoDB
 - Integración con SWAPI
 - Uso de Serverless Framework
 - Uso de Node.js

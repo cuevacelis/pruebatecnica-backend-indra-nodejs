@@ -105,8 +105,79 @@ async function createPeopleService(eventLambda) {
   }
 }
 
+async function updatePeopleService(eventLambda) {
+  try {
+    const BODY = JSON.parse(eventLambda.body);
+    const RESPONSE_UPDATE = await PeopleModal.updateById({
+      peopleId: eventLambda.pathParameters.id,
+      body: BODY,
+    });
+    console.log(RESPONSE_UPDATE);
+
+    if (RESPONSE_UPDATE) {
+      return {
+        statusCode: RESPONSE_UPDATE.$metadata.httpStatusCode ?? 200,
+        body: JSON.stringify({
+          message: "¡Persona de SW actualizada o agregada con exito!",
+          DynamoDB: RESPONSE_UPDATE.Attributes ?? "No se encontro resultados",
+        }),
+      };
+    } else {
+      return {
+        statusCode: RESPONSE_UPDATE.$metadata.httpStatusCode ?? 400,
+        body: JSON.stringify({
+          message: 'Falta el campo de "peopleId":"1" como string',
+        }),
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      statusCode: error.statusCode ?? 500,
+      body: JSON.stringify({
+        message: "¡Error: Al actualizar una persona de SW!",
+      }),
+    };
+  }
+}
+
+async function deletePeopleService(eventLambda) {
+  try {
+    const RESPONSE_DELETE = await PeopleModal.deleteById({
+      peopleId: eventLambda.pathParameters.id,
+    });
+
+    if (RESPONSE_DELETE) {
+      return {
+        statusCode: RESPONSE_DELETE.$metadata.httpStatusCode ?? 200,
+        body: JSON.stringify({
+          message: "¡Persona de SW eliminada con exito!",
+        }),
+      };
+    } else {
+      return {
+        statusCode: RESPONSE_DELETE.$metadata.httpStatusCode ?? 400,
+        body: JSON.stringify({
+          message:
+            "Error: Surgio algun problema al eliminar a la persona de SW, al parecer tiene mucha fuerza ",
+        }),
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      statusCode: error.statusCode ?? 500,
+      body: JSON.stringify({
+        message: "¡Error: Al eliminar una persona de SW!",
+      }),
+    };
+  }
+}
+
 module.exports = {
   getAllPeoplesService,
   getByIdPeopleService,
   createPeopleService,
+  updatePeopleService,
+  deletePeopleService,
 };

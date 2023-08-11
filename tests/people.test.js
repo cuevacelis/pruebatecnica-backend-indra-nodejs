@@ -139,11 +139,10 @@ describe("Test People", () => {
         '    "color_de_pelo": "n/a",\r\n' +
         '    "color_de_piel": "gold",\r\n' +
         '    "color_de_ojos": "yellow",\r\n' +
-        '    "año_de_nacimiento": "112BBY",\r\n' +
+        '    "anio_de_nacimiento": "112BBY",\r\n' +
         '    "genero": "n/a",\r\n' +
         '    "mundo_natal": "https://swapi.dev/api/planets/1/",\r\n' +
         '    "peliculas": [],\r\n' +
-        '    "especies": [],\r\n' +
         '    "vehiculos": [],\r\n' +
         '    "naves_estelares": [],\r\n' +
         '    "creado": "2014-12-10T15:10:51.357000Z",\r\n' +

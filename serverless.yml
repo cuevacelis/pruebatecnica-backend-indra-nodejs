@@ -50,6 +50,22 @@ functions:
       - httpApi:
           path: /api/people
           method: post
+  updatePeople:
+    name: "updatePeople"
+    description: Update star wars actors
+    handler: src/controllers/peopleController.updatePeople
+    events:
+      - httpApi:
+          path: /api/people/{id}
+          method: patch
+  deletePeople:
+    name: "deletePeople"
+    description: Delete star wars actors
+    handler: src/controllers/peopleController.deletePeople
+    events:
+      - httpApi:
+          path: /api/people/{id}
+          method: delete
 
 resources:
   Resources:
